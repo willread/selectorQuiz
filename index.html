@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<title>Selector Quiz</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/lib/bootstrap.min.css">
+		<link rel="stylesheet" href="css/lib/bootstrap-responsive.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</head>
+	<body>
+		<div class="container" ng-controller="QuizControl">
+			<div class="row">
+				<div class="span6">
+					<div id="title" class="pull-left">{{question.name}}</div>
+				</div>
+				<div class="span6">
+					<div id="count" class="pull-right">{{current + 1}}/{{total}}</div>
+				</div>
+			</div>
+			<div id="question">{{question.selector}}</div>
+			<ul id="answers">
+				<li ng-repeat="line in question.markup">
+					<input type="checkbox" ng-model="answers[$index]" id="answer-{{$index}}">
+					<label for="answer-{{$index}}">{{line}}</label>
+				</li>
+			</ul>
+			<form ng-submit="checkQuestion()">
+				<input type="submit" class="btn" value="Next &raquo;">
+				<div ng-class="{invalid: valid}" id="error">Answers are incorrect.</div>
+			</form>
+		</div>
+	</body>
+</html>
