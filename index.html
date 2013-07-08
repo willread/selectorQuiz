@@ -28,7 +28,7 @@
 			</ul>
 			<form ng-submit="checkQuestion()">
 				<input type="submit" class="btn" value="Next &raquo;">
-				<div ng-class="{invalid: valid}" id="error">Answers are incorrect.</div>
+				<div ng-class="{invalid: !valid}" id="error">Answers are incorrect.</div>
 			</form>
 		</div>
 	</body>

@@ -33,7 +33,7 @@ input[type="checkbox"] {
 	display: none;
 }
 
-input[type="checkbox"] + label {
+label {
 	color: #74baeb;
 	font-size: 12px;
 	font-family: monospace;
@@ -41,6 +41,10 @@ input[type="checkbox"] + label {
 	margin: 0;
 	padding: 1px 4px;
 	border-bottom: 1px solid #34352f;
+}
+
+label:hover {
+	background: #2d2e27;
 }
 
 input[type="checkbox"]:checked + label {

@@ -29,13 +29,15 @@ var QuizControl = function($scope){
 		}
 	];
 	
+	// Initialize total
 	$scope.total = $scope.questions.length;
 	
+	// Remove invalid flag to hide error message when answers change
 	$scope.$watch("answers", function(){
-		$scope.valid = false;
-		console.log("wee");
+		$scope.valid = true;
 	}, true);
 	
+	// Parse answers from questions object and replace with a nice array of true/false for later comparison
 	for(var ii = 0; ii < $scope.questions.length; ii++){
 		var question = $scope.questions[ii];
 		var newAnswers = [];
@@ -44,6 +46,7 @@ var QuizControl = function($scope){
 		$scope.questions[ii].answers = newAnswers;
 	}
 	
+	// Change the question
 	$scope.setQuestion = function(num){
 		$scope.current = num;
 		$scope.question = $scope.questions[num];
@@ -51,18 +54,20 @@ var QuizControl = function($scope){
 		for(var ii = 0; ii < $scope.question.markup.length; ii++) $scope.answers[ii] = false;
 	}
 	
+	// Check answers for current question
 	$scope.checkQuestion = function(){
 		var correct = true;
 		for(var ii = 0; ii < $scope.answers.length; ii++){
 			if($scope.answers[ii] !== $scope.question.answers[ii]) correct = false;
 		}
-		// TODO: Do something when success / fail
+		// TODO: Handle successfully answering last question
 		if(correct){
 			$scope.setQuestion($scope.current + 1);
 		}else{
-			$scope.valid = true;
+			$scope.valid = false;
 		}
 	}
 	
+	// Set initial question
 	$scope.setQuestion(0);
 }
