@@ -1,31 +1,66 @@
 var QuizControl = function($scope){
 	$scope.questions = [
 		{
-			name: "Universal Selector",
-			selector: "div * p",
+			name: "Type Selector",
+			description: "Selects an element of a particular type",
+			selector: "i",
 			markup: [
-				"<div>",
-				"	<span id=\"wrapper\">",
-				"		<p>First paragraph</p>",
-				"	</span>",
-				"</div>",
-				"<span>",
-				"	<p>Second paragraph</p>",
-				"</span>"
+				"<p>",
+				"	Praesent ultricies dui eu diam.",
+				"	<i>Consectetur adipiscing elit.</i>",
+				"	Donec nec eleifend elit.",
+				"</p>"
 			],
 			answers: [2]
 		},
 		{
-			name: "Type Selector",
+			name: "Descendant Selector",
+			description: "Selects an element which is a descendent of another element",
 			selector: "p i",
 			markup: [
+				"<div>",
+				"	<i>Vestibulum dictum.</i>",
+				"</div>",
 				"<p>",
-				"	Lorem ipsum dolor sit amet.",
-				"	<i>Consectetur adipiscing elit.</i>",
-				"	Nunc et massa non sapien.",
+				"	Ut non lectus in metus rhoncus.",
+				"	<i>Quisque lacinia varius velit.</i>",
+				"	Fusce fermentum lacus nec arcu.",
+				"	<i>Morbi cursus lectus ac.</i>",
 				"</p>"
 			],
-			answers: [2]
+			answers: [5, 7]			
+		},
+		{
+			name: "Universal Selector",
+			selector: "div * p",
+			description: "Selects any element",
+			markup: [
+				"<div>",
+				"	<span id=\"wrapper\">",
+				"		<p>Lorem ipsum dolor sit amet.</p>",
+				"	</span>",
+				"	<p>Ullam non ligula vel augue.</p>",
+				"</div>",
+				"<span>",
+				"	<p>Nunc et massa non sapien.</p>",
+				"</span>"
+			],
+			answers: [2, 4]
+		},
+		{
+			name: "Child Selector",
+			selector: "div > a",
+			description: "Selects an elements which is a direct child of another element",
+			markup: [
+				"<div>",
+				"	<a href=\"yahoo.com\">Yahoo</a>",
+				"	<a href=\"bing.com\">Bing</a>",
+				"	<span class=\"featured\">",
+				"		<a href=\"google.com\">Google</a>",				
+				"	</span>",
+				"</div>"
+			],
+			answers: [1, 2]
 		}
 	];
 	

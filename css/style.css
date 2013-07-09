@@ -19,6 +19,12 @@ body {
 	margin: 20px 0;
 }
 
+#description {
+	color: #7c7f70;
+	font-size: 12px;
+	margin: 0px 0 20px 0;
+}
+
 li, ul {
 	list-style: none;
 	margin: 0;
