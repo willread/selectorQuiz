@@ -64,7 +64,8 @@ var QuizControl = function($scope){
 		}
 	];
 	
-	// Initialize total
+	// Initialize
+	$scope.done = false;
 	$scope.total = $scope.questions.length;
 	
 	// Remove invalid flag to hide error message when answers change
@@ -119,9 +120,12 @@ var QuizControl = function($scope){
 		for(var ii = 0; ii < $scope.answers.length; ii++){
 			if($scope.answers[ii] !== $scope.question.answers[ii]) correct = false;
 		}
-		// TODO: Handle successfully answering last question
 		if(correct){
-			$scope.setQuestion($scope.current + 1);
+			if($scope.current + 1 == $scope.questions.length){
+				$scope.done = true;
+			}else{
+				$scope.setQuestion($scope.current + 1);
+			}
 		}else{
 			$scope.valid = false;
 		}

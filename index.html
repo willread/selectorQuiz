@@ -11,26 +11,31 @@
 	</head>
 	<body>
 		<div class="container" ng-controller="QuizControl">
-			<div class="row">
-				<div class="span6">
-					<div id="title" class="pull-left">{{question.name}}</div>
+			<div ng-class="{hidden: done}">
+				<div class="row">
+					<div class="span6">
+						<div id="title" class="pull-left">{{question.name}}</div>
+					</div>
+					<div class="span6">
+						<div id="count" class="pull-right">{{current + 1}}/{{total}}</div>
+					</div>
 				</div>
-				<div class="span6">
-					<div id="count" class="pull-right">{{current + 1}}/{{total}}</div>
-				</div>
+				<div id="description">{{question.description}}</div>
+				<div id="question">{{question.selector}}</div>
+				<ul id="answers">
+					<li ng-repeat="line in question.markup">
+						<input type="checkbox" ng-model="answers[$index]" id="answer-{{$index}}">
+						<label for="answer-{{$index}}" ng-bind-html-unsafe="line"></label>
+					</li>
+				</ul>
+				<form ng-submit="checkQuestion()">
+					<input type="submit" class="btn" value="Next &raquo;">
+					<div ng-class="{invalid: !valid}" id="error">Answers are incorrect.</div>
+				</form>
 			</div>
-			<div id="description">{{question.description}}</div>
-			<div id="question">{{question.selector}}</div>
-			<ul id="answers">
-				<li ng-repeat="line in question.markup">
-					<input type="checkbox" ng-model="answers[$index]" id="answer-{{$index}}">
-					<label for="answer-{{$index}}" ng-bind-html-unsafe="line"></label>
-				</li>
-			</ul>
-			<form ng-submit="checkQuestion()">
-				<input type="submit" class="btn" value="Next &raquo;">
-				<div ng-class="{invalid: !valid}" id="error">Answers are incorrect.</div>
-			</form>
+			<div ng-class="{hidden: !done}">
+				<div id="congrats">Congratulations, you've completed the quiz!</div>
+			</div>
 		</div>
 	</body>
 </html>

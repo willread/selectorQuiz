@@ -101,3 +101,9 @@ form .btn {
 .value {
 	color: #7ddd83;
 }
+
+#congrats {
+	font-size: 32px;
+	color: #e9f0c6;
+	text-align: center;
+}
