@@ -5,7 +5,7 @@ var QuizControl = function($scope){
 			selector: "div * p",
 			markup: [
 				"<div>",
-				"	<span>",
+				"	<span id=\"wrapper\">",
 				"		<p>First paragraph</p>",
 				"	</span>",
 				"</div>",
@@ -37,13 +37,37 @@ var QuizControl = function($scope){
 		$scope.valid = true;
 	}, true);
 	
-	// Parse answers from questions object and replace with a nice array of true/false for later comparison
+	// Do some pre-processing of question data
 	for(var ii = 0; ii < $scope.questions.length; ii++){
 		var question = $scope.questions[ii];
+	
+		// Parse answers from questions object and replace with a nice array of true/false for later comparison	
 		var newAnswers = [];
 		for(var jj = 0; jj < question.markup.length; jj++) newAnswers[jj] = false;
 		for(var jj = 0; jj < question.answers.length; jj++) newAnswers[question.answers[jj]] = true;
 		$scope.questions[ii].answers = newAnswers;
+		
+		// Format markup for rendering
+		// Syntax highlighting is very basic, but suits our needs
+		for(var jj = 0; jj < question.markup.length; jj++){
+			var html = question.markup[jj];
+			
+			// Escape tag brackets
+			html = html.replace(/</g, "&lt;");
+			html = html.replace(/>/g, "&gt;");
+			
+			// Style attributes
+			html = html.replace(/([\w\-]*)(\=)(["'\w\-]*)/gi, "<span class=\"attribute\">$1</span><span class=\"tag\">$2</span><span class=\"value\">$3</span>");
+			
+			// Style tags
+			html = html.replace(/(&lt;\/?[\w\-]+)/gi, "<span class=\"tag\">$1</span>"); // <abc
+			html = html.replace(/(&gt;)/g, "<span class=\"tag\">$1</span>");
+			
+			// Convert tabs to spans to allow us to style them
+			html = html.replace(/\t/g, "<span class=\"tab\"></span>");
+			
+			question.markup[jj] = html;
+		}
 	}
 	
 	// Change the question

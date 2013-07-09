@@ -23,7 +23,7 @@
 			<ul id="answers">
 				<li ng-repeat="line in question.markup">
 					<input type="checkbox" ng-model="answers[$index]" id="answer-{{$index}}">
-					<label for="answer-{{$index}}">{{line}}</label>
+					<label for="answer-{{$index}}" ng-bind-html-unsafe="line"></label>
 				</li>
 			</ul>
 			<form ng-submit="checkQuestion()">

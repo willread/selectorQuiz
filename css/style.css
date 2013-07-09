@@ -34,10 +34,10 @@ input[type="checkbox"] {
 }
 
 label {
-	color: #74baeb;
+	color: #fff;
 	font-size: 12px;
 	font-family: monospace;
-	white-space: pre;
+	white-space: normal;
 	margin: 0;
 	padding: 1px 4px;
 	border-bottom: 1px solid #34352f;
@@ -77,4 +77,21 @@ form .btn {
 #error.invalid {
 	-webkit-transform: translateX(0);
 	opacity: 1.0;
+}
+
+.tab {
+	width: 20px;
+	display: inline-block;
+}
+
+.tag {
+	color: #74baeb;
+}
+
+.attribute {
+	color: #c9d082;
+}
+
+.value {
+	color: #7ddd83;
 }
